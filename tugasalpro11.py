@@ -1,7 +1,7 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 import random
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder="template11")
 
 pesan_acak = [
     "Makan patty itu spongebob",
@@ -35,7 +35,12 @@ def welcome_user():
         welcome_message = f"Selamat datang, {name}, anda berhasil masuk ke Puja Kerang Ajaib"
         return jsonify({'Pesan untukmu': welcome_message})
     else:
-        return jsonify({'error': 'Siapa namamu ?'}), 400
+        return jsonify({'error': 'Siapa namamu?'}), 400
+    
+@app.route('/formpost', methods=['GET'])
+def formulir_test():
+    return render_template('form_post.html')
+
 
 #if __name__ == '__main__':
     #app.run(debug=True)
